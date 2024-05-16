@@ -18,8 +18,7 @@ pulse1_out = Pin(8, Pin.OUT)
 
 # setup cv output
 # -6v = 0, 0v = 32768, +6v = 65535
-# TODO: change to 23 for actual cv1 out
-cv1_out = PWM(Pin(22), freq=60000, duty_u16=32768)
+cv1_out = PWM(Pin(23), freq=60000, duty_u16=32768)
 
 # pwm value for each semitone 32768 for 6 volts/octaves or 72 semitones
 pwm_semi = 32768 / 72
@@ -29,8 +28,8 @@ scale_root = 0
 scale_mode = [0, 2, 4, 7, 9]
 chords = [[0, 4, 7], [0, 4, 7, 9], [0, 4, 7, 11], [0, 4, 7, 9, 14]]
 
-# octave offset = 2 octaves down
-octave = 0 - int(pwm_semi * 24)
+# octave offset - 1 octave down
+octave = 1 * int(pwm_semi * 12)
 
 # the current chord, chord root
 # and note we're playing in that chord
@@ -61,7 +60,7 @@ def play_semitone(st):
 
 while True:
     # if we should end pulse output
-    if pulse1_out.value() == 0 and time.ticks_diff(pulse1_out_off_time, time.ticks_ms()) > 0:
+    if pulse1_out.value() == 0 and time.ticks_diff(time.ticks_ms(), pulse1_out_off_time) > 0:
         pulse1_out.value(1)
 
     # if we got a pulse start playing a new chord
