@@ -56,7 +56,7 @@ def play_semitone(st):
     # figure out when to end the pulse out and when to play the next note
     now = time.ticks_ms()
     pulse1_out_off_time = time.ticks_add(now, 10)
-    next_note_time = time.ticks_add(now, 300)
+    next_note_time = time.ticks_add(now, 500)
 
 while True:
     # if we should end pulse output

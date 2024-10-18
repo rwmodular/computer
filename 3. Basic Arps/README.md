@@ -1,4 +1,4 @@
-# 2 - Basic Arps
+# 3 - Basic Arps
 This example waits for a trigger at the pulse 1 input and then:
 1. Picks a random root note from the defined scale
 2. Picks a random chord from the defined chords
